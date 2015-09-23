@@ -96,13 +96,13 @@ public class ProjectCardActivity extends ActionBarActivity {
         int mAnimatedPosition = ListView.INVALID_POSITION;
 
         private class ViewHolder {
-            ImageView pj_image;
+//            ImageView pj_image;
             ProjectStatusView pj_status;
-            TextView pj_name ;
+            TextView pj_name;
             TextView pj_endDate;
 
             public ViewHolder(View view) {
-                this.pj_image = (ImageView) view.findViewById(R.id.pj_image);
+//                this.pj_image = (ImageView) view.findViewById(R.id.pj_image);
                 this.pj_status = (ProjectStatusView) view.findViewById(R.id.pj_status);
                 this.pj_name = (TextView) view.findViewById(R.id.pj_name);
                 this.pj_endDate = (TextView) view.findViewById(R.id.pj_endDate);
@@ -128,7 +128,7 @@ public class ProjectCardActivity extends ActionBarActivity {
                 holder = new ViewHolder(convertView);
                 convertView.setTag(holder);
             } else {
-                holder = (ViewHolder)convertView.getTag();
+                holder = (ViewHolder) convertView.getTag();
             }
 
             if (position == projects.size() - 1) {
@@ -147,7 +147,7 @@ public class ProjectCardActivity extends ActionBarActivity {
                     }
                 });
 
-                holder.pj_image.setImageResource(R.drawable.image);
+//                holder.pj_image.setImageResource(R.drawable.image);
                 holder.pj_name.setText("+ Project");
             } else {
                 // Existing Project Block
@@ -161,21 +161,21 @@ public class ProjectCardActivity extends ActionBarActivity {
                         try {
                             getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            holder.pj_image.setImageBitmap(bmp);
+//                            holder.pj_image.setImageBitmap(bmp);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     } else {
-                        String[] columns = { MediaStore.Images.Media.DATA };
+                        String[] columns = {MediaStore.Images.Media.DATA};
                         Cursor c = getContentResolver().query(uri, columns, null, null, null);
                         c.moveToFirst();
                         int index = c.getColumnIndex(MediaStore.Images.Media.DATA);
                         String path = c.getString(index);
                         bmp = BitmapFactory.decodeFile(path);
-                        holder.pj_image.setImageBitmap(bmp);
+//                        holder.pj_image.setImageBitmap(bmp);
                     }
                 } else {
-                    holder.pj_image.setImageResource(R.drawable.image);
+//                    holder.pj_image.setImageResource(R.drawable.image);
                 }
 
                 holder.pj_status.setStatus(_project.getStatus());
